@@ -7,6 +7,17 @@ pipeline {
     }
 
     stages {
+        stage('Check branch') {
+            steps {
+                script {
+                    if (env.BRANCH_NAME != 'main') {
+                        echo "Skipping build for branch: ${env.BRANCH_NAME}"
+                        currentBuild.result = 'SUCCESS'
+                        return
+                    }
+                }
+            }
+        }
         stage("Restore project dependencies") {
 
             steps {
