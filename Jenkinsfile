@@ -10,6 +10,7 @@ pipeline {
         stage('Check branch') {
             steps {
                 script {
+                    echo "Building branch: ${env.BRANCH_NAME}"
                     if (env.BRANCH_NAME != 'main') {
                         echo "Skipping build for branch: ${env.BRANCH_NAME}"
                         currentBuild.result = 'SUCCESS'
