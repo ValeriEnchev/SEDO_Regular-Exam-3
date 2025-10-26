@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git branch to build')
+    }
+
     triggers {
         // Automatically build when changes are pushed to 'main'
         pollSCM('H/5 * * * *') // Poll every 5 minutes (use webhook if available)
