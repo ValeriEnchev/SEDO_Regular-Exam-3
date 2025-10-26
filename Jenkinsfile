@@ -6,11 +6,6 @@ pipeline {
         pollSCM('H/5 * * * *') // Poll every 5 minutes (use webhook if available)
     }
 
-    options {
-        timestamps()
-        ansiColor('xterm')
-    }
-
     stages {
         stage('Checkout') {
             steps {
