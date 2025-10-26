@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Restore project dependencies") {
             when {
-                branch pattern: "(main)", comparator: "REGEXP"
+                branch '*/main'
             }
             steps {
                 bat 'dotnet restore'
@@ -11,7 +11,7 @@ pipeline {
         }
         stage("Build the project") {
             when {
-                branch pattern: "(main)", comparator: "REGEXP"    
+                branch '*/main'   
             }
             steps {
                 bat 'dotnet build --no-restore'
@@ -19,7 +19,7 @@ pipeline {
         }
         stage ("Run tests") {
             when {
-                branch pattern: "(main)", comparator: "REGEXP"   
+                branch '*/main'   
             }
             steps {
                 bat 'dotnet test --no-build --verbosity normal'
